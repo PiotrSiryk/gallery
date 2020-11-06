@@ -10,7 +10,7 @@
     flex-direction: column;
     position: relative;
 }
-.blackout {
+.blackout1,.blackout2 {
     position: absolute;
     width: 100%;
     height: 100vh;
