@@ -51,4 +51,3 @@ class Gallery {
 
 const galCity = new Gallery(displayWindow2, 'city', '.city');
 const galMeme = new Gallery(displayWindow1, 'meme', '.memes');
-console.log(galCity);
