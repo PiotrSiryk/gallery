@@ -1,14 +1,12 @@
-const displayWindow1 = document.querySelector('.blackout1');
-const displayWindow2 = document.querySelector('.blackout2');
-
 class Gallery {
-    constructor(blackout, type, elements) {
-        this.blackout = blackout;
-        this.blackoutX = blackout.querySelector('.x-div');
-        this.rest = blackout.querySelector('.rest');
-        this.right = blackout.querySelector('.right');
-        this.left = blackout.querySelector('.left');
-        this.img = blackout.querySelector('.imgDiv>img');
+    constructor(type, elements) {
+        this.type = type;
+        this.blackout = document.querySelector('.blackout1');
+        this.blackoutX = this.blackout.querySelector('.x-div');
+        this.rest = this.blackout.querySelector('.rest');
+        this.right = this.blackout.querySelector('.right');
+        this.left = this.blackout.querySelector('.left');
+        this.img = this.blackout.querySelector('.imgDiv>img');
         
         this.elements = document.querySelector(elements)
         this.images = document.querySelectorAll(`[data-type="${type}"]`);
@@ -28,6 +26,7 @@ class Gallery {
         this.images.forEach(element => {this.rest.insertAdjacentHTML('beforeend', `<img src="${element.src}" data-type="${element.dataset.type}" data-id="${element.dataset.id}" alt="">`)})
 
         this.img.dataset.id = event.target.dataset.id;
+        this.img.dataset.type = event.target.dataset.type;
 
         /* bottom bar */
         this.mini = this.blackout.querySelectorAll('.rest>*');
@@ -38,15 +37,19 @@ class Gallery {
         this.img.dataset.id = event.target.dataset.id;
     }
     toTheRight() {
-        this.img.dataset.id >= this.mini.length ? this.img.dataset.id = 0 : null;
-        this.img.src = this.elements.querySelector(`[data-id="${(Number(this.img.dataset.id)+1).toString()}"]`).src;
-        this.img.dataset.id = (Number(this.img.dataset.id)+1).toString();
+        if(this.img.dataset.type == this.type) {
+            this.img.dataset.id >= this.mini.length ? this.img.dataset.id = 0 : null;
+            this.img.src = this.elements.querySelector(`[data-id="${(Number(this.img.dataset.id)+1).toString()}"]`).src;
+            this.img.dataset.id = (Number(this.img.dataset.id)+1).toString();
+        }
     }
     toTheLeft() {
-        this.img.dataset.id <= 1 ? this.img.dataset.id = this.mini.length+1 : null;
-        this.img.src = this.elements.querySelector(`[data-id="${(Number(this.img.dataset.id)-1).toString()}"]`).src;
-        this.img.dataset.id = (Number(this.img.dataset.id)-1).toString();
+        if(this.img.dataset.type == this.type) {
+            this.img.dataset.id <= 1 ? this.img.dataset.id = this.mini.length+1 : null;
+            this.img.src = this.elements.querySelector(`[data-id="${(Number(this.img.dataset.id)-1).toString()}"]`).src;
+            this.img.dataset.id = (Number(this.img.dataset.id)-1).toString();
+        }
     }
 }
-const galCity = new Gallery(displayWindow2, 'city', '.city');
-const galMeme = new Gallery(displayWindow1, 'meme', '.memes');
+const galCity = new Gallery('city', '.city');
+const galMeme = new Gallery('meme', '.memes');

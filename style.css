@@ -10,7 +10,7 @@
     flex-direction: column;
     position: relative;
 }
-.blackout1,.blackout2 {
+.blackout1 {
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -58,13 +58,10 @@
     width: 80%;
     height: 220px;
     background-color: violet;
+    overflow: scroll;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    
 }
 .rest>img {
-    height: 210px;
+    width: 250px;
     cursor: pointer;
 }
