@@ -48,6 +48,5 @@ class Gallery {
         this.img.dataset.id = (Number(this.img.dataset.id)-1).toString();
     }
 }
-
 const galCity = new Gallery(displayWindow2, 'city', '.city');
 const galMeme = new Gallery(displayWindow1, 'meme', '.memes');
