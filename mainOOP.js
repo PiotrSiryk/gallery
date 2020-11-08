@@ -16,11 +16,13 @@ class Gallery {
         this.right.addEventListener('click', this.toTheRight.bind(this));
         this.left.addEventListener('click', this.toTheLeft.bind(this));
     }
+
     off() {
-        this.blackout.style.display ="none";
+        this.blackout.style.display = "none";
     }
+
     display(event) {
-        this.blackout.style.display ="flex";
+        this.blackout.style.display = "flex";
         this.img.src = event.target.src;
         this.rest.innerHTML = "";
         this.images.forEach(element => {this.rest.insertAdjacentHTML('beforeend', `<img src="${element.src}" data-type="${element.dataset.type}" data-id="${element.dataset.id}" alt="">`)})
@@ -32,22 +34,25 @@ class Gallery {
         this.mini = this.blackout.querySelectorAll('.rest>*');
         this.mini.forEach(element => {element.addEventListener('click', this.swap.bind(this))});
     }
+
     swap(event) {
         this.img.src = event.target.src;
         this.img.dataset.id = event.target.dataset.id;
     }
+
     toTheRight() {
         if(this.img.dataset.type == this.type) {
             this.img.dataset.id >= this.mini.length ? this.img.dataset.id = 0 : null;
-            this.img.src = this.elements.querySelector(`[data-id="${(Number(this.img.dataset.id)+1).toString()}"]`).src;
-            this.img.dataset.id = (Number(this.img.dataset.id)+1).toString();
+            this.img.src = this.elements.querySelector(`[data-id="${(Number(this.img.dataset.id)+1)}"]`).src;
+            this.img.dataset.id = (Number(this.img.dataset.id)+1);
         }
     }
+
     toTheLeft() {
         if(this.img.dataset.type == this.type) {
             this.img.dataset.id <= 1 ? this.img.dataset.id = this.mini.length+1 : null;
-            this.img.src = this.elements.querySelector(`[data-id="${(Number(this.img.dataset.id)-1).toString()}"]`).src;
-            this.img.dataset.id = (Number(this.img.dataset.id)-1).toString();
+            this.img.src = this.elements.querySelector(`[data-id="${(Number(this.img.dataset.id)-1)}"]`).src;
+            this.img.dataset.id = (Number(this.img.dataset.id)-1);
         }
     }
 }
